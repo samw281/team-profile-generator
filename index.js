@@ -53,7 +53,6 @@ const addManager = () => {
   
         // push manager to role array
         rolesArr.push(manager);
-        console.log(manager);
       });
   };
   
