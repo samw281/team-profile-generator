@@ -155,17 +155,27 @@ const writeFile = (data) => {
         // Once profile is created
       } else {
         console.log(
-          "Your team profile has been successfully created! Please look at index.html to see!"
+          "Your team profile has been created! Please look at index.html to view it!"
         );
       }
     });
   };
 
-  addManager()
+// Calling addManager
+addManager()
+  // Once addManager is done, then addEmployee is called
   .then(addEmployee)
+  // Once addEmployee is done, then push both addManager, and addEmployee data to teamArr
   .then((rolesArr) => {
-      return generateHTML(rolesArr);
+    // Generate HTML page once teamArr has data
+    return generateHTML(rolesArr);
   })
+  // Once page is generated, then use pageHTML data
   .then((pageHTML) => {
-      return writeFile(pageHTML);
+    // call writeFile with pageHTML data, which will then write the index.html
+    return writeFile(pageHTML);
   })
+  // Catchiung any errors and console.log them
+  .catch((err) => {
+    console.log(err);
+  });
